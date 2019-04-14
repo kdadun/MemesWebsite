@@ -1,0 +1,13 @@
+form .ng-invalid.ng-touched,
+form .ng-invalid.ng-dirty{
+border: 2px solid red !important;
+}
+
+.invalid {
+  color: red;
+  font-weight: 500;
+}
+
+.validator-feedback {
+  color: red ;
+   }

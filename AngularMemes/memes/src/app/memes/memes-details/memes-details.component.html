@@ -1,0 +1,12 @@
+<app-navbar></app-navbar>
+<body>
+<div class="row mem"  style="padding-top: 50px; padding-left:10px">
+  <div class=" col-md-6 col-sm-6 " >
+      <h3 style="text-align: center; font-weight: bold;">{{mem?.MemName}}</h3>
+      <img class="img-fluid" src="{{mem?.Image}}">
+  </div>
+  <div class="col-md-6 col-sm-6">
+ <app-rating [memId]="id"></app-rating>
+  </div>
+  </div>
+</body>

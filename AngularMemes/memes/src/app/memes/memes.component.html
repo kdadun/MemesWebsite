@@ -1,0 +1,22 @@
+<div style="height: 30px"></div>
+<div class="row">
+  <div class="col-sm-8 offset-sm-1" *ngFor="let mem of listMemes | paginate: { itemsPerPage: 2, currentPage: page1, id: 'd'  }" style="margin-bottom: 15px; ">
+    <div class="card h-100" [routerLink]="['/mem-details', mem?.Id]" >
+      <div id="cardHeader">
+          <h2 class="card-title" style="text-align:center;">{{mem.MemName}}</h2>
+      </div>
+      <div class="card-body">
+          <img  class="img-fluid" src="{{mem.Image}}">
+          <div *ngFor="let hashTag of mem.HashTags" id="tagContainer">
+            <button class="btn btn-default btn-responsive btn-sm">#{{hashTag.Name}}</button>
+          </div>
+
+      </div>
+  </div>
+  </div>
+</div>
+<nav class="navbar sticky-bottom">
+  <div class="has-text-centered">
+    <pagination-controls  (pageChange)="page1 = $event" id="d"></pagination-controls>
+  </div>
+</nav>

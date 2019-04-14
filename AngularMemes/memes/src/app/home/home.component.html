@@ -1,0 +1,92 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-7" >
+      <form [formGroup]="memesForm" >
+      <div style="height: 20px"></div>
+      <h3 style="text-align: left">Add mem</h3>
+        <div class="row" >
+          <div class="col-xs-12 col-sm-12 offset-sm-1 col-md-12"  >
+              <div class="form-group">
+                <input type="text" class="form-control" style="width:50%;display:inline-block"  formControlName="memesName" required>
+                <button class="btn btn-sm btn-primary " style="margin-left:5px;height:38px;display:inline-block;" [disabled]="!memesForm.get('memesName').valid"  (click)="addTitle()">Add tittle</button>
+                <div *ngIf="showHide" style="display:inline-block; margin-left:15px">
+                <label for="file-upload" class="custom-file-upload">
+                    <i class="fas fa-upload"></i> Set image
+                </label>
+                <input id="file-upload" type="file" multiple (change)="uploadImage($event.target.files)" formControlName="image" >
+              </div>
+              </div>
+          </div>
+        </div>
+        <div *ngIf="showHide"   style="margin-top: 15px">
+            <div class="row">
+              <div class="col-sm-6 offset-sm-3">
+                  <img *ngFor="let img of images" [src]="img" class="img-responsive" style="max-width:250px;max-height:250px">
+              </div>
+            </div>
+            <div class="row" style="margin-left:28px;margin-top:25px">
+              <div class="col-sm-12">
+                  <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Write tags" style="width:50%;display:inline-block"  formControlName="hashTags" required>
+                      <button class="btn btn-sm btn-primary " style="margin-left:10px;height:38px;display:inline-block;" [disabled]="!memesForm.get('hashTags').valid"  (click)="addTags(memesForm.get('hashTags').value)">Add tags</button>
+                    </div>
+              </div>
+            </div>
+            <div class="row">
+              <div id="tagContainer" *ngFor="let hashTag of tags; let i=index;">
+                <button class="btn btn-default btn-responsive btn-sm"   (click)="deleteTags(i)"> #{{hashTag}}</button>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-12" id="buttonArea">
+                <button class="btn btn-primary" style=" margin-top:5px;margin-left:5px" (click)="onSubmit()" [disabled]="memesForm.invalid" type="submit">Submit</button>
+                <button style="margin-left:5px; margin-top:5px;width:74px" class="btn btn-primary" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+      <div class="col-sm-12">
+            <app-memes></app-memes>
+      </div>
+    </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-5 ">
+      <div class="registration">
+      <div class="card text-center" >
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs" >
+                <li class="nav-item">
+                    <a class="nav-link active"  data-toggle="tab" href="#login" *ngIf="app.localStorageGetItem('userToken') === null">Login</a>
+                </li>
+                <li class="nav-item"  >
+                    <a class="nav-link"  data-toggle="tab" href="#registration" *ngIf="app.localStorageGetItem('userToken') === null">Registration</a>
+                </li>
+                <li class="nav-item "  *ngIf="app.localStorageGetItem('userToken') !== null">
+                    <a class="nav-link active"  data-toggle="tab" href="#myAccount">My account</a>
+                </li>
+                <li class="nav-item" *ngIf="app.localStorageGetItem('userToken') !== null">
+                  <a class="nav-link"  data-toggle="tab" href="#profileImage">Set profile image</a>
+              </li>
+            </ul>
+        </div>
+        <div class="tab-content card-body"  >
+            <div id="login"  class="tab-pane active" *ngIf="app.localStorageGetItem('userToken') === null">
+              <app-login></app-login>
+            </div>
+            <div id="registration" class="tab-pane" *ngIf="app.localStorageGetItem('userToken') === null">
+              <app-registration></app-registration>
+            </div>
+            <div id="myAccount"  class="tab-pane active" *ngIf="app.localStorageGetItem('userToken') !== null">
+                <app-account></app-account>
+              </div>
+              <div id="profileImage"  class="tab-pane " *ngIf="app.localStorageGetItem('userToken') !== null">
+                <app-set-image></app-set-image>
+              </div>
+        </div>
+     </div>
+    </div>
+  </div>
+  </div>
+</div>
+

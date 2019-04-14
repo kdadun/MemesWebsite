@@ -1,0 +1,27 @@
+<form [formGroup]="imageForm" (ngSubmit)="onSubmit()">
+<div class="row">
+    <div class="col-sm-6 offset-sm-2" >
+      <img  src="{{currentImage}}" class=" rounded-circle img-responsive float-left"  style="max-width:200px;max-height:200px">
+      <div class="form-group" id="selectImage" style="padding-top: 20px" >
+          <label for="file-upload" class="custom-file-upload">
+            <i class="fas fa-file-upload"></i> <span style="font-size:13px"> Set profile image </span>
+          </label>
+          <input id="file-upload" type="file" multiple (change)="uploadImage($event.target.files)" formControlName="image">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div *ngIf="images.length != 0" >
+            <p style="color:black; font-weight: bolder" >Your profile image </p>
+            <img *ngFor="let img of images" [src]="img" class="img-responsive" style="max-width:150px;max-height:150px">
+          </div>
+    </div>
+</div>
+<div style="height: 20px"></div>
+<div class="row">
+  <div class="col-sm-6 offset-sm-2">
+      <button type="submit" [disabled]="!imageForm.valid" class=" btn btn-success"> Update image </button>
+  </div>
+</div>
+</form>

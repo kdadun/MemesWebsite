@@ -1,0 +1,33 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit(this.loginForm.get('username').value,this.loginForm.get('password').value)">
+  <div class="col-sm-12">
+      <div class="form-group">
+          <input type="text" class="form-control" formControlName="username" placeholder="login" >
+          <div class="validator-feedback" *ngIf="loginForm.get('username').touched || loginForm.get('username').dirty ">
+              <div class="invalid" *ngIf="loginForm.get('username').hasError('required')">
+                Field is required!
+              </div>
+            </div>
+      </div>
+  </div>
+  <div class="col-sm-12">
+      <div class="form-group">
+          <input type="password" class="form-control" formControlName="password" placeholder="password" >
+          <div class="validator-feedback" *ngIf="loginForm.get('password').touched || loginForm.get('password').dirty ">
+              <div class="invalid" *ngIf="loginForm.get('password').hasError('required')">
+                Field is required!
+              </div>
+            </div>
+      </div>
+  </div>
+  <div class="col-sm-12">
+    <button type="submit" [disabled]="!loginForm.valid" class="btn btn-success">Submit</button>
+  </div>
+</form>
+<div class="row error" *ngIf="showError">
+    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xs-12 " >
+        <div class="alert alert-dismissible alert-danger" >
+            <button type="button" class="close" (click)="close()" data-dismiss="alert">&times;</button>
+             <strong>Username or password is incorrect</strong>
+          </div>
+    </div>
+  </div>

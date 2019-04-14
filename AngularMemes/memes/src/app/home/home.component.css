@@ -1,0 +1,40 @@
+
+input[type="file"] {
+  display: none;
+}
+#tagContainer {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 20px;
+  margin-bottom: 5px
+}
+#tags {
+   margin-left: 10%;
+   border:2px solid grey;
+   border-radius:2px;
+   width: auto;
+   color:black;
+   font-weight: bold;
+   background: #7EAED4;
+   font-size: 11px;
+}
+#buttonArea {
+  margin-top:10px;
+}
+.btn-default {
+  font-family: Raleway-SemiBold;
+  font-size: 10px;
+  color: rgba(217, 83, 78, 0.75);
+  letter-spacing: 1px;
+  line-height: 15px;
+  border: 2px solid rgba(217, 83, 78, 0.75);
+  border-radius: 40px;
+  background: transparent;
+  transition: all 0.3s ease 0s;
+}
+
+.btn-default:hover {
+  color: #FFF;
+  background: rgba(217, 83, 78, 0.75);
+  border: 2px solid rgba(217, 83, 78, 0.75);
+}

@@ -1,0 +1,41 @@
+
+<form class="registration-form needs-validation form-horizontal"  [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm)">
+<div class="col-sm-12">
+  <div class="form-group">
+    <input type="text" class="form-control" formControlName="username" placeholder="login" >
+    <div class="validator-feedback" *ngIf="registrationForm.get('username').touched || registrationForm.get('username').dirty ">
+      <div class="invalid" *ngIf="registrationForm.get('username').hasError('required')">
+        Field is required!
+      </div>
+    </div>
+    </div>
+</div>
+<div class="col-sm-12">
+  <div class="form-group">
+    <input type="text" class="form-control" formControlName="email" placeholder="email" >
+    <div class="validator-feedback" *ngIf="registrationForm.get('password').touched || registrationForm.get('password').dirty ">
+        <p class="invalid" *ngIf="registrationForm.get('email').hasError('email')">  Primary Email not valid.</p>
+    </div>
+    </div>
+</div>
+<div class="col-sm-12">
+  <div class="form-group">
+    <input type="password" class="form-control" formControlName="password" placeholder="password" >
+    <div class="validator-feedback" *ngIf="registrationForm.get('password').touched || registrationForm.get('password').dirty ">
+        <p class="invalid" *ngIf="registrationForm.get('password').hasError('required')"> Field is required! </p>
+    </div>
+    </div>
+</div>
+<div class="col-sm-12">
+  <div class="form-group">
+    <input type="password" class="form-control" formControlName="confirmPass" placeholder="repeat password" >
+    <div class="validator-feedback" *ngIf="registrationForm.get('confirmPass').touched || registrationForm.get('confirmPass').dirty ">
+        <p class="invalid" *ngIf="registrationForm.get('confirmPass').hasError('required')"> Field is required! </p>
+        <p *ngIf="registrationForm.hasError('notSame')">Password don't match</p>
+    </div>
+    </div>
+</div>
+<div class="col-sm-12">
+  <button type="submit" [disabled]="!registrationForm.valid" class=" btn btn-success"> Register </button>
+</div>
+</form>
